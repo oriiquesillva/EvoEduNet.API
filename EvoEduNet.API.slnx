@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="EvoEduNet.API/EvoEduNet.API.csproj" Id="af581bfa-345f-487b-810a-8486d11fb58e" />
+  <Project Path="EvoEduNet.Tests/EvoEduNet.Tests.csproj" />
 </Solution>
