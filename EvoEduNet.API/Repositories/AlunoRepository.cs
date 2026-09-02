@@ -54,6 +54,21 @@ namespace EvoEduNet.API.Repositories
             }
         }
 
+        public async Task<IEnumerable<Aluno>> ObterTodosAsync(bool apenasAtivos = true)
+        {
+            const string sql = @"
+                SELECT Id, Nome, Email, DataNascimento, Ativo, DataCadastro
+                FROM dbo.Aluno
+                WHERE (@ApenasAtivos = 0 OR Ativo = 1)
+                ORDER BY Nome ASC;
+            ";
+
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                return await connection.QueryAsync<Aluno>(sql, new { ApenasAtivos = apenasAtivos ? 1 : 0 });
+            }
+        }
+
         public async Task<Aluno> ObterPorIdAsync(int id)
         {
             const string sql = @"

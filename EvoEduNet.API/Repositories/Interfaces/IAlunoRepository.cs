@@ -8,6 +8,7 @@ namespace EvoEduNet.API.Repositories.Interfaces
     public interface IAlunoRepository
     {
         Task<Tuple<IEnumerable<Aluno>, int>> ObterPaginadoAsync(string nome, int page, int pageSize);
+        Task<IEnumerable<Aluno>> ObterTodosAsync(bool apenasAtivos = true);
         Task<Aluno> ObterPorIdAsync(int id);
         Task<Aluno> ObterPorEmailAsync(string email);
         Task<int> InserirAsync(Aluno aluno);

@@ -28,6 +28,17 @@ namespace EvoEduNet.API.Controllers
         }
 
         /// <summary>
+        /// Retorna todos os alunos (sem paginação). Por padrão retorna apenas os ativos, com opção de listar todos incluindo inativos.
+        /// </summary>
+        [HttpGet]
+        [Route("todos")]
+        public async Task<IHttpActionResult> ObterTodos([FromUri] bool apenasAtivos = true)
+        {
+            var alunos = await _alunoService.ObterTodosAsync(apenasAtivos);
+            return Ok(alunos);
+        }
+
+        /// <summary>
         /// Busca por ID do aluno.
         /// </summary>
         [HttpGet]

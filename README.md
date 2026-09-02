@@ -146,7 +146,7 @@ Para rodar a suíte completa de testes unitários:
 # Execução via vstest.console.exe (ou pelo Gerenciador de Testes do Visual Studio)
 & "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" EvoEduNet.Tests\bin\Debug\EvoEduNet.Tests.dll
 ```
-**Resultado Esperado:** 14 testes executados com 100% de aprovação.
+**Resultado Esperado:** 16 testes executados com 100% de aprovação.
 
 ### 5. Interface Web (Frontend)
 Para utilizar a interface gráfica:
@@ -193,6 +193,24 @@ Para utilizar a interface gráfica:
         }
       ]
     }
+    ```
+
+- **`GET /api/alunos/todos?apenasAtivos=true`**
+  - Retorna a lista completa de todos os alunos (sem paginação), ordenada alfabeticamente por nome.
+  - **Parâmetros de Query:**
+    - `apenasAtivos` (booleano, opcional, padrão: `true`): quando `true`, lista apenas os alunos ativos (`Ativo = 1`). Quando `false`, inclui alunos ativos e inativos.
+  - **Retorno (200 OK):**
+    ```json
+    [
+      {
+        "id": 1,
+        "nome": "Ana Souza",
+        "email": "ana.souza@email.com",
+        "dataNascimento": "2006-03-14T00:00:00",
+        "ativo": true,
+        "dataCadastro": "2026-09-02T14:40:00"
+      }
+    ]
     ```
 
 - **`GET /api/alunos/{id}`**
@@ -324,7 +342,7 @@ Para utilizar a interface gráfica:
   ```
 
 ### 2. Testes Unitários (Moq + NUnit)
-- Projeto `EvoEduNet.Tests` com **14 testes unitários automatizados**.
+- Projeto `EvoEduNet.Tests` com **16 testes unitários automatizados**.
 - Cobertura completa de regras de negócio, testes de concorrência simulada, validação de chamadas a `Commit()` e `Rollback()` e invalidação de cache.
 
 ### 3. Interface Web SPA

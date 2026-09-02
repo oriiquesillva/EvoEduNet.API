@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EvoEduNet.API.Domain.Dtos;
@@ -40,6 +41,12 @@ namespace EvoEduNet.API.Services
             }
 
             return MapToResponseDto(aluno);
+        }
+
+        public async Task<IEnumerable<AlunoResponseDto>> ObterTodosAsync(bool apenasAtivos = true)
+        {
+            var alunos = await _alunoRepository.ObterTodosAsync(apenasAtivos);
+            return alunos.Select(MapToResponseDto);
         }
 
         public async Task<AlunoResponseDto> CriarAsync(CriarAlunoDto dto)
