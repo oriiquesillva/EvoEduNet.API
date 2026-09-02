@@ -39,7 +39,6 @@ namespace EvoEduNet.API.Infrastructure.Filters
                 return;
             }
 
-            // Para erros inesperados, logar no console e retornar 500 genérico sem vazar detalhes internos
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[ERRO NÃO TRATADO] {DateTime.Now:yyyy-MM-dd HH:mm:ss}: {exception}");
             Console.ResetColor();
