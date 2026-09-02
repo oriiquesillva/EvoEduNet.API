@@ -10,6 +10,19 @@ namespace EvoEduNet.API.Infrastructure.Filters
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            if (actionContext.Request.Method == HttpMethod.Get)
+            {
+                var keysToRemove = actionContext.ModelState
+                    .Where(kvp => kvp.Value.Errors.Any(e => e.ErrorMessage.Contains("A value is required")))
+                    .Select(kvp => kvp.Key)
+                    .ToList();
+
+                foreach (var key in keysToRemove)
+                {
+                    actionContext.ModelState[key].Errors.Clear();
+                }
+            }
+
             if (!actionContext.ModelState.IsValid)
             {
                 var erros = actionContext.ModelState.Values

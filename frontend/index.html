@@ -39,7 +39,7 @@
     <!-- Barra de Navegação Superior -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="javascript:void(0)">
                 <i class="fa-solid fa-graduation-cap me-2"></i>EvoEduNet <span class="badge bg-light text-primary fs-6 ms-2">.NET 4.8</span>
             </a>
             <div class="d-flex align-items-center text-white">
@@ -126,13 +126,13 @@
                 <nav>
                     <ul class="pagination pagination-sm mb-0">
                         <li class="page-item" id="btnPaginaAnterior">
-                            <a class="page-link" href="#" aria-label="Anterior">&laquo; Anterior</a>
+                            <a class="page-link" href="javascript:void(0)" aria-label="Anterior">&laquo; Anterior</a>
                         </li>
                         <li class="page-item disabled" id="indicadorPaginaAtual">
-                            <a class="page-link text-dark fw-bold" href="#">1</a>
+                            <a class="page-link text-dark fw-bold" href="javascript:void(0)">1</a>
                         </li>
                         <li class="page-item" id="btnProximaPagina">
-                            <a class="page-link" href="#" aria-label="Próxima">Próxima &raquo;</a>
+                            <a class="page-link" href="javascript:void(0)" aria-label="Próxima">Próxima &raquo;</a>
                         </li>
                     </ul>
                 </nav>
@@ -215,7 +215,10 @@
         // Carregar listagem paginada da API
         function carregarAlunos() {
             const nomeFiltro = $('#filtroNome').val().trim();
-            const url = `${API_BASE_URL}/alunos?page=${paginaAtual}&pageSize=${tamanhoPagina}&nome=${encodeURIComponent(nomeFiltro)}`;
+            let url = `${API_BASE_URL}/alunos?page=${paginaAtual}&pageSize=${tamanhoPagina}`;
+            if (nomeFiltro) {
+                url += `&nome=${encodeURIComponent(nomeFiltro)}`;
+            }
 
             $('#tabelaAlunosCorpo').html(`
                 <tr>
