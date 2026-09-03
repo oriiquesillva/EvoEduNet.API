@@ -196,7 +196,7 @@ Para utilizar a interface gráfica:
     ```
 
 - **`GET /api/alunos/todos?apenasAtivos=true`**
-  - Retorna a lista completa de todos os alunos (sem paginação), ordenada alfabeticamente por nome.
+  - Retorna a lista completa de todos os alunos (sem paginação), ordenada por id.
   - **Parâmetros de Query:**
     - `apenasAtivos` (booleano, opcional, padrão: `true`): quando `true`, lista apenas os alunos ativos (`Ativo = 1`). Quando `false`, inclui alunos ativos e inativos.
   - **Retorno (200 OK):**
